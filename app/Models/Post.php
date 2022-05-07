@@ -15,4 +15,13 @@ class Post extends Model
         'imagen',
         'user_id'
     ];
+
+
+    /**
+     * Relación de autoria de los Posts
+     */
+
+    public function user(){
+        return $this->belongsTo(User::class)->select(['name', 'username']);
+    }
 }

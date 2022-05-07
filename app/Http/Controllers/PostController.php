@@ -40,12 +40,20 @@ class PostController extends Controller
         // ]);
 
         // Segunda sintaxis para crear registros
-        $post = new Post;
-        $post->titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        // $post = new Post;
+        // $post->titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = auth()->user()->id;
+        // $post->save();
+
+        // Tercera sintaxis para crear registros (requiere haber establecido una relación entre User y Post)
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' => auth()->user()->id
+        ]);
 
         return redirect()->route('posts.index', auth()->user()->username);
     }
