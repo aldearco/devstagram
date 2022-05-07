@@ -2175,19 +2175,24 @@ var dropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__["default"]('#dropzone',
   addRemoveLinks: true,
   dictRemoveFile: 'Borrar archivo',
   maxFiles: 1,
-  uploadMultiple: false
-});
-dropzone.on('sending', function (file, xhr, formData) {
-  console.log(formData);
+  uploadMultiple: false,
+  init: function init() {
+    if (document.querySelector('#imagen').value.trim()) {
+      var imagenPublicada = {};
+      imagenPublicada.size = 1234; // la imagen debe tener un size y un name
+
+      imagenPublicada.name = document.querySelector('#imagen').value;
+      this.options.addedfile.call(this, imagenPublicada);
+      this.options.thumbnail.call(this, imagenPublicada, "/uploads/".concat(imagenPublicada.name));
+      imagenPublicada.previewElement.classList.add('dz-success', 'dz-complete');
+    }
+  }
 });
 dropzone.on('success', function (file, response) {
-  console.log(response);
-});
-dropzone.on('error', function (file, message) {
-  console.log(message);
+  document.querySelector('#imagen').value = response.imagen;
 });
 dropzone.on('removedfile', function () {
-  console.log('Archivo eliminado');
+  document.querySelector('#imagen').value = '';
 });
 
 /***/ }),
