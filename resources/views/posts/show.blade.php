@@ -18,6 +18,19 @@
         <div class="py-3">
             <p>0 Likes</p>
         </div>
+
+        @auth
+            @if ($post->user_id === auth()->user()->id)
+            <div>
+                <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="Eliminar publicación" class="bg-red-500 hover:bg-red-600 p-2 text-sm rounded text-white mt-4 cursor-pointer">
+                </form>
+            </div>
+            @endif
+        @endauth
+        
         <div class="mt-5">
             <p class="text-xl font-bold text-center mb-4">Comentarios</p>
         </div>
