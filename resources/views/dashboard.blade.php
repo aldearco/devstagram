@@ -23,7 +23,7 @@ Perfil de {{ $user->username }}
                 <span class="font-normal">Siguiendo</span>
             </p>
             <p class="text-gray-800 text-sm mb-3 font-bold">
-                {{ $posts->count() }}
+                {{ $user->posts->count() }}
                 <span class="font-normal">Posts</span>
             </p>
         </div>
