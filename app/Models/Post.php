@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Like;
+use App\Models\User;
+use App\Models\Comentario;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -29,5 +32,19 @@ class Post extends Model
      */
     public function comentarios(){
         return $this->hasMany(Comentario::class);
+    }
+
+    /**
+     * Relación de un Post con los Likes que ha recibido
+     */
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Revisar si un usuario ya hizo Like
+     */
+    public function checkLike(User $user){
+        return $this->likes->contains('user_id', $user->id);
     }
 }
