@@ -18,7 +18,7 @@ class PostController extends Controller
 
     public function index(User $user){
 
-        $posts = Post::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(8);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(8);
 
         return view('dashboard', [
             'user' => $user,
@@ -66,7 +66,7 @@ class PostController extends Controller
 
     public function show(User $user, Post $post){
 
-        $comentarios = Comentario::where('post_id', $post->id)->orderBy('id', 'desc')->get();
+        $comentarios = Comentario::where('post_id', $post->id)->latest()->get();
 
         return view('posts.show', [
             'post' => $post,
