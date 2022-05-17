@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Livewire\LikePost;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,6 @@ Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.sto
 // Like a las fotos
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
 Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
-
 
 // Ruta con variable que se verifica la última para evitar problemas con las otras rutas
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');

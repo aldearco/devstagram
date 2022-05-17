@@ -6,12 +6,11 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>DevStagram - @yield('titulo')</title>
         @stack('styles')
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="{{ asset('js/app.js') }}" defer></script>
-
+        @livewireStyles
     </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -49,6 +48,6 @@
         <footer class="text-center p-5 text-gray-600 font-bold uppercase mt-10">
            DevStagram - Todos los derechos reservados {{ now()->year }}
         </footer>
-
+        @livewireScripts
     </body>
 </html>
